@@ -1,0 +1,61 @@
+{
+  "name": "@sankarbala/datepicker",
+  "version": "1.0.2",
+  "description": "react/typescript component for picking date",
+  "author": "Sankar Bala",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "module": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sankarbala/datepicker"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.41",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.66.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "custom-build": "del dist && tsc && copyfiles -u 2 src/lib/**/*.html src/lib/**/*.scss src/lib/**/*.css dist/",
+    "dev": "set NODE_ENV=development && webpack-dev-server",
+    "build-demo": "set NODE_ENV=production && npx webpack --config webpack.config.js",
+    "deploy-demo": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
