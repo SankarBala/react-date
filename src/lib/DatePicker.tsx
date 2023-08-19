@@ -9,11 +9,15 @@ interface DatePickerProps {
     placeholder?: string,
     name?: string,
     className?: string,
+    style?: React.CSSProperties,
+    disabled?: boolean
+    otherAttributes?: object
+    (...rest: any[]): void;
 };
 
 type Tab = 'day' | 'month' | 'year';
 
-const DatePicker: React.FC<DatePickerProps> = ({ id, onChange, value = '', placeholder, name, ...rest }) => {
+const DatePicker: React.FC<DatePickerProps> = ({ id, onChange, value = '', placeholder, name, className, disabled = false, ...rest }) => {
     // gets the today date time object
     const now: Date = useMemo(() => new Date(), [])
 
@@ -143,11 +147,13 @@ const DatePicker: React.FC<DatePickerProps> = ({ id, onChange, value = '', place
 
     const onInputClick = (e: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>) => {
         e.preventDefault()
-        e.stopPropagation()
-        if (opened) {
-            closeAndReset()
-        } else {
-            setOpened(true)
+        if (!disabled) {
+            e.stopPropagation()
+            if (opened) {
+                closeAndReset()
+            } else {
+                setOpened(true)
+            }
         }
 
     }
@@ -223,9 +229,12 @@ const DatePicker: React.FC<DatePickerProps> = ({ id, onChange, value = '', place
                     id={id}
                     type="text"
                     value={selectedDate ? formatDate(selectedDate) : ''}
-                    readOnly={true} ref={dateInputRef}
+                    readOnly={true}
+                    ref={dateInputRef}
                     placeholder={placeholder}
                     name={name}
+                    disabled={disabled}
+                    className={className}
                     {...rest}
                 />
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className='calendar-icon'>
